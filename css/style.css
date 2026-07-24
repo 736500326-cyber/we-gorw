@@ -108,14 +108,28 @@ a {
 }
 
 
-.intro__content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.intro__button {
+  position: relative;
+  z-index: 20;
 
-  transition:
-    opacity 220ms ease,
-    transform 420ms ease;
+  pointer-events: auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+
+  min-width: 190px;
+  height: 54px;
+  padding: 0 26px;
+
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+
+  color: #ffffff;
+  background: transparent;
+
+  cursor: pointer;
 }
 
 
