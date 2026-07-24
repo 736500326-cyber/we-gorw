@@ -15,23 +15,25 @@
 
   <title>未构 WeGrow</title>
 
-  <link rel="stylesheet" href="./css/style.css">
+  <link
+    rel="stylesheet"
+    href="./css/style.css?v=1"
+  >
 </head>
 
 <body class="page-locked">
 
-  <!-- =====================================
-       蓝色开屏
-       ===================================== -->
+  <!-- ==================================
+       第一阶段：纯蓝开屏
+       ================================== -->
   <section
     id="intro"
     class="intro"
     aria-label="未构官网开屏"
   >
-
     <div class="intro__content">
 
-      <div class="intro__name">
+      <div class="intro__title">
         WE GROW
       </div>
 
@@ -41,7 +43,7 @@
         type="button"
       >
         <span>进入官网</span>
-        <span class="intro__arrow">→</span>
+        <span>→</span>
       </button>
 
       <p class="intro__tip">
@@ -49,13 +51,12 @@
       </p>
 
     </div>
-
   </section>
 
 
-  <!-- =====================================
+  <!-- ==================================
        官网主体
-       ===================================== -->
+       ================================== -->
   <main
     id="site"
     class="site"
@@ -71,7 +72,7 @@
         aria-label="返回首页"
       >
         <img
-          src="./images/logo-full.png"
+          src="./images/logo/logo-full.png"
           alt="未构 WeGrow"
         >
       </a>
@@ -86,75 +87,80 @@
     </header>
 
 
-    <!-- =====================================
-         首页首屏
-         ===================================== -->
+    <!-- ==================================
+         首页大屏
+         ================================== -->
     <section
       id="home"
       class="hero"
     >
 
-      <!-- LOGO组合动画 -->
+      <!-- 第二阶段：Logo组合动画 -->
       <div
-        id="logoMotion"
-        class="logo-motion"
-        aria-label="未构 WeGrow Logo动画"
+        id="brandReveal"
+        class="brand-reveal"
       >
+        <div class="logo-motion">
 
-        <!-- 图三：蓝色图形 -->
-        <img
-          class="logo-motion__shape"
-          src="./images/logo-shape.png"
-          alt=""
-          draggable="false"
-        >
+          <img
+            class="logo-motion__shape"
+            src="./images/logo/logo-shape.png"
+            alt=""
+            draggable="false"
+          >
 
-        <!-- 图二：文字部分 -->
-        <img
-          class="logo-motion__text"
-          src="./images/logo-text.png"
-          alt="WE GROW"
-          draggable="false"
-        >
+          <img
+            class="logo-motion__text"
+            src="./images/logo/logo-text.png"
+            alt="WE GROW"
+            draggable="false"
+          >
 
+        </div>
       </div>
 
 
-      <!-- 首屏文字 -->
-      <div class="hero-copy">
+      <!-- 第三阶段：品牌海报 -->
+      <div
+        id="heroPoster"
+        class="hero-poster"
+        aria-hidden="true"
+      >
 
-        <p class="hero-copy__eyebrow">
-          AI MARKETING GROWTH SYSTEM
-        </p>
+        <img
+          class="hero-poster__image"
+          src="./images/hero/hero-poster.png"
+          alt="未构公司品牌宣传片"
+          draggable="false"
+        >
 
-        <h1>
-          让AI从工具，
-          <br>
-          变成企业持续增长的执行系统
-        </h1>
+        <div class="hero-poster__shade"></div>
 
-        <p class="hero-copy__description">
-          AI全案营销增长系统服务商
-          <br>
-          他们教企业使用AI，我们陪企业用AI拿结果。
-        </p>
 
-        <div class="hero-copy__actions">
+        <!-- 播放按钮 -->
+        <button
+          id="playButton"
+          class="play-button"
+          type="button"
+          aria-label="播放公司品牌视频"
+        >
+          <span class="play-button__circle">
+            <span class="play-button__triangle"></span>
+          </span>
 
-          <a
-            class="primary-button"
-            href="#services"
-          >
-            查看服务能力
-          </a>
+          <span class="play-button__label">
+            PLAY BRAND FILM
+          </span>
+        </button>
 
-          <a
-            class="secondary-button"
-            href="#contact"
-          >
-            联系我们
-          </a>
 
+        <!-- 左下角品牌信息 -->
+        <div class="hero-poster__caption">
+          <strong>WEGROW</strong>
+
+          <p>
+            AI MARKETING GROWTH SYSTEM
+          </p>
         </div>
 
       </div>
@@ -162,44 +168,84 @@
     </section>
 
 
-    <!-- 暂时用于测试滚动 -->
+    <!-- 后期继续增加 -->
     <section
       id="services"
-      class="placeholder-section"
+      class="page-section"
     >
       <span>01</span>
       <h2>服务能力</h2>
-      <p>下一步继续搭建这一部分。</p>
+      <p>该板块后续继续搭建。</p>
     </section>
 
 
     <section
       id="cases"
-      class="placeholder-section"
+      class="page-section"
     >
       <span>02</span>
       <h2>项目案例</h2>
-      <p>下一步继续搭建这一部分。</p>
+      <p>该板块后续继续搭建。</p>
     </section>
 
 
     <section
       id="contact"
-      class="placeholder-section"
+      class="page-section"
     >
       <span>03</span>
       <h2>联系我们</h2>
-      <p>下一步继续搭建这一部分。</p>
+      <p>该板块后续继续搭建。</p>
     </section>
 
   </main>
 
 
+  <!-- ==================================
+       品牌视频弹窗
+       ================================== -->
+  <div
+    id="videoModal"
+    class="video-modal"
+    aria-hidden="true"
+  >
+
+    <button
+      id="closeVideoButton"
+      class="video-modal__close"
+      type="button"
+      aria-label="关闭视频"
+    >
+      ×
+    </button>
+
+    <video
+      id="brandVideo"
+      class="video-modal__video"
+      src="./videos/brand-video.mp4"
+      poster="./images/hero/hero-poster.png"
+      controls
+      playsinline
+      webkit-playsinline
+      preload="metadata"
+    >
+      当前浏览器不支持视频播放。
+    </video>
+
+  </div>
+
+
   <noscript>
-    请开启浏览器JavaScript后访问未构官网。
+    请开启浏览器 JavaScript 后访问未构官网。
   </noscript>
 
-  <script src="./js/main.js?v=2"></script>
+
+  <!-- 功能模块必须先加载 -->
+  <script src="./js/modules/intro.js?v=1"></script>
+  <script src="./js/modules/brand-video.js?v=1"></script>
+
+  <!-- 主入口最后加载 -->
+  <script src="./js/main.js?v=1"></script>
 
 </body>
 </html>
