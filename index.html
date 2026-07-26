@@ -303,9 +303,38 @@
     </video>
 
   </div>
+<div
+  id="videoModal"
+  class="video-modal"
+  aria-hidden="true"
+>
 
+  <button
+    id="closeVideoButton"
+    class="video-modal__close"
+    type="button"
+    aria-label="关闭视频"
+  >
+    ×
+  </button>
+
+  <video
+    id="brandVideo"
+    class="video-modal__video"
+    src="./videos/brand-video.mp4"
+    poster="./images/hero-poster.png"
+    controls
+    playsinline
+    webkit-playsinline
+    preload="metadata"
+  >
+    当前浏览器不支持视频播放。
+  </video>
+
+</div>
 
   <noscript>
+  
     请开启浏览器 JavaScript 后访问未构官网。
   </noscript>
 
