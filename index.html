@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
 
@@ -17,20 +18,22 @@
 
   <link
     rel="stylesheet"
-    href="./css/style.css?v=1"
+    href="./css/style.css?v=5"
   >
 </head>
+
 
 <body class="page-locked">
 
   <!-- ==================================
-       第一阶段：纯蓝开屏
+       第一阶段：品牌蓝开屏
        ================================== -->
   <section
     id="intro"
     class="intro"
     aria-label="未构官网开屏"
   >
+
     <div class="intro__content">
 
       <div class="intro__title">
@@ -43,7 +46,7 @@
         type="button"
       >
         <span>进入官网</span>
-        <span>→</span>
+        <span class="intro__arrow">→</span>
       </button>
 
       <p class="intro__tip">
@@ -51,6 +54,7 @@
       </p>
 
     </div>
+
   </section>
 
 
@@ -72,12 +76,16 @@
         aria-label="返回首页"
       >
         <img
-          src="./images/logo/logo-full.png"
+          src="./images/logo-full.png"
           alt="未构 WeGrow"
         >
       </a>
 
-      <nav class="site-header__nav">
+
+      <nav
+        class="site-header__nav"
+        aria-label="主导航"
+      >
         <a href="#home">首页</a>
         <a href="#services">服务能力</a>
         <a href="#cases">项目案例</a>
@@ -90,107 +98,42 @@
     <!-- ==================================
          首页大屏
          ================================== -->
-<section
-  id="home"
-  class="hero"
->
-
-  <!-- Logo组合动画 -->
-  <div
-    id="brandReveal"
-    class="brand-reveal"
-  >
-    <div class="logo-motion">
-
-      <img
-        class="logo-motion__shape"
-        src="./images/logo-shape.png"
-        alt=""
-        draggable="false"
-      >
-
-      <img
-        class="logo-motion__text"
-        src="./images/logo-text.png"
-        alt="WE GROW"
-        draggable="false"
-      >
-
-    </div>
-  </div>
-
-
-  <!-- 品牌视频海报 -->
-  <div
-    id="heroPoster"
-    class="hero-poster"
-    aria-hidden="true"
-  >
-
-    <img
-      class="hero-poster__image"
-      src="./images/hero-poster.png"
-      alt="未构品牌宣传片"
-      draggable="false"
+    <section
+      id="home"
+      class="hero"
     >
-
-    <div class="hero-poster__shade"></div>
-
-
-    <button
-      id="playButton"
-      class="play-button"
-      type="button"
-      aria-label="播放公司品牌视频"
-    >
-      <span class="play-button__circle">
-        <span class="play-button__triangle"></span>
-      </span>
-
-      <span class="play-button__label">
-        PLAY BRAND FILM
-      </span>
-    </button>
-
-
-    <div class="hero-poster__caption">
-      <strong>WEGROW</strong>
-
-      <p>
-        AI MARKETING GROWTH SYSTEM
-      </p>
-    </div>
-
-  </div>
-
-</section>
 
       <!-- 第二阶段：Logo组合动画 -->
       <div
         id="brandReveal"
         class="brand-reveal"
       >
-        <div class="logo-motion">
+
+        <div
+          class="logo-motion"
+          aria-label="未构Logo组合动画"
+        >
 
           <img
             class="logo-motion__shape"
-            src="./images/logo/logo-shape.png"
+            src="./images/logo-shape.png"
             alt=""
             draggable="false"
           >
 
           <img
             class="logo-motion__text"
-            src="./images/logo/logo-text.png"
+            src="./images/logo-text.png"
             alt="WE GROW"
             draggable="false"
           >
 
         </div>
+
       </div>
 
 
-      <!-- 第三阶段：品牌海报 -->
+      <!-- 第三阶段：品牌视频海报 -->
       <div
         id="heroPoster"
         class="hero-poster"
@@ -199,8 +142,8 @@
 
         <img
           class="hero-poster__image"
-          src="./images/hero/hero-poster.png"
-          alt="未构公司品牌宣传片"
+          src="./images/hero-poster.png"
+          alt="未构公司品牌宣传片封面"
           draggable="false"
         >
 
@@ -214,6 +157,7 @@
           type="button"
           aria-label="播放公司品牌视频"
         >
+
           <span class="play-button__circle">
             <span class="play-button__triangle"></span>
           </span>
@@ -221,16 +165,19 @@
           <span class="play-button__label">
             PLAY BRAND FILM
           </span>
+
         </button>
 
 
-        <!-- 左下角品牌信息 -->
+        <!-- 海报左下角信息 -->
         <div class="hero-poster__caption">
+
           <strong>WEGROW</strong>
 
           <p>
             AI MARKETING GROWTH SYSTEM
           </p>
+
         </div>
 
       </div>
@@ -238,14 +185,22 @@
     </section>
 
 
-    <!-- 后期继续增加 -->
+    <!-- ==================================
+         后续页面占位
+         ================================== -->
     <section
       id="services"
       class="page-section"
     >
-      <span>01</span>
+      <span class="page-section__number">
+        01
+      </span>
+
       <h2>服务能力</h2>
-      <p>该板块后续继续搭建。</p>
+
+      <p>
+        该板块后续继续搭建。
+      </p>
     </section>
 
 
@@ -253,9 +208,15 @@
       id="cases"
       class="page-section"
     >
-      <span>02</span>
+      <span class="page-section__number">
+        02
+      </span>
+
       <h2>项目案例</h2>
-      <p>该板块后续继续搭建。</p>
+
+      <p>
+        该板块后续继续搭建。
+      </p>
     </section>
 
 
@@ -263,9 +224,15 @@
       id="contact"
       class="page-section"
     >
-      <span>03</span>
+      <span class="page-section__number">
+        03
+      </span>
+
       <h2>联系我们</h2>
-      <p>该板块后续继续搭建。</p>
+
+      <p>
+        该板块后续继续搭建。
+      </p>
     </section>
 
   </main>
@@ -278,6 +245,9 @@
     id="videoModal"
     class="video-modal"
     aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-label="未构品牌视频"
   >
 
     <button
@@ -289,11 +259,12 @@
       ×
     </button>
 
+
     <video
       id="brandVideo"
       class="video-modal__video"
       src="./videos/brand-video.mp4"
-      poster="./images/hero/hero-poster.png"
+      poster="./images/hero-poster.png"
       controls
       playsinline
       webkit-playsinline
@@ -303,55 +274,22 @@
     </video>
 
   </div>
-<div
-  id="videoModal"
-  class="video-modal"
-  aria-hidden="true"
->
 
-  <button
-    id="closeVideoButton"
-    class="video-modal__close"
-    type="button"
-    aria-label="关闭视频"
-  >
-    ×
-  </button>
-
-  <video
-    id="brandVideo"
-    class="video-modal__video"
-    src="./videos/brand-video.mp4"
-    poster="./images/hero-poster.png"
-    controls
-    playsinline
-    webkit-playsinline
-    preload="metadata"
-  >
-    当前浏览器不支持视频播放。
-  </video>
-
-</div>
 
   <noscript>
-  
     请开启浏览器 JavaScript 后访问未构官网。
   </noscript>
 
 
-  <!-- 功能模块必须先加载 -->
-  <script src="./js/modules/intro.js?v=1"></script>
-  <script src="./js/modules/brand-video.js?v=1"></script>
-
-  <!-- 主入口最后加载 -->
   <!-- 开屏与Logo动画模块 -->
-<script src="./js/modules/intro.js?v=1"></script>
+  <script src="./js/modules/intro.js?v=5"></script>
 
-<!-- 品牌视频模块 -->
-<script src="./js/modules/brand-video.js?v=1"></script>
+  <!-- 品牌视频模块 -->
+  <script src="./js/modules/brand-video.js?v=5"></script>
 
-<!-- 主入口必须最后加载 -->
-<script src="./js/main.js?v=3"></script>
+  <!-- 主入口必须最后加载 -->
+  <script src="./js/main.js?v=5"></script>
 
 </body>
+
 </html>
