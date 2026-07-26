@@ -1,12 +1,12 @@
 /* =========================================
-   1. 全局基础设置
+   1. 全局设置
    ========================================= */
 
 :root {
   --brand-blue: #0319f1;
   --black: #050505;
   --white: #ffffff;
-  --gray: #6d6d75;
+  --gray: #76767e;
   --line: rgba(5, 5, 5, 0.12);
 }
 
@@ -42,7 +42,8 @@ body {
 }
 
 
-body.page-locked {
+body.page-locked,
+body.video-open {
   overflow: hidden;
 }
 
@@ -53,6 +54,11 @@ a {
 }
 
 
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
 a {
   color: inherit;
   text-decoration: none;
@@ -60,17 +66,12 @@ a {
 
 
 /* =========================================
-   2. 纯蓝开屏
+   2. 品牌蓝开屏
    ========================================= */
 
 .intro {
   position: fixed;
-
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
+  inset: 0;
   z-index: 1000;
 
   display: flex;
@@ -82,29 +83,49 @@ a {
   color: var(--white);
   background: var(--brand-blue);
 
-  /*
-    点击后，蓝色全屏会向中心收拢。
-  */
   transition:
-    top 900ms cubic-bezier(0.76, 0, 0.24, 1),
-    right 900ms cubic-bezier(0.76, 0, 0.24, 1),
-    bottom 900ms cubic-bezier(0.76, 0, 0.24, 1),
-    left 900ms cubic-bezier(0.76, 0, 0.24, 1),
-    opacity 240ms ease 720ms,
-    border-radius 900ms ease;
+    opacity 700ms ease,
+    transform 900ms cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 
 .intro.is-leaving {
-  top: 22vh;
-  right: 27vw;
-  bottom: 22vh;
-  left: 27vw;
-
   opacity: 0;
-  border-radius: 2px;
+
+  transform: scale(0.88);
 
   pointer-events: none;
+}
+
+
+.intro__content {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition:
+    opacity 300ms ease,
+    transform 500ms ease;
+}
+
+
+.intro.is-leaving .intro__content {
+  opacity: 0;
+
+  transform: scale(0.92);
+}
+
+
+.intro__title {
+  margin-bottom: 46px;
+
+  font-size: clamp(54px, 9vw, 136px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.07em;
 }
 
 
@@ -112,65 +133,27 @@ a {
   position: relative;
   z-index: 20;
 
-  pointer-events: auto;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 26px;
+  gap: 24px;
 
   min-width: 190px;
   height: 54px;
   padding: 0 26px;
 
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 999px;
-
-  color: #ffffff;
-  background: transparent;
-
-  cursor: pointer;
-}
-
-
-.intro.is-leaving .intro__content {
-  opacity: 0;
-  transform: scale(0.92);
-}
-
-
-.intro__name {
-  margin-bottom: 46px;
-
-  color: var(--white);
-
-  font-size: clamp(48px, 9vw, 132px);
-  font-weight: 700;
-  line-height: 0.88;
-  letter-spacing: -0.07em;
-}
-
-
-.intro__button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 26px;
-
-  min-width: 190px;
-  height: 54px;
-  padding: 0 26px;
-
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: 999px;
 
   color: var(--white);
   background: transparent;
 
   font-size: 14px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
 
   cursor: pointer;
+
+  pointer-events: auto;
 
   transition:
     color 180ms ease,
@@ -218,16 +201,14 @@ a {
 
   min-height: 100vh;
 
-  overflow: hidden;
-
   background: var(--white);
 
   opacity: 0;
   visibility: hidden;
 
   transition:
-    opacity 240ms ease,
-    visibility 240ms ease;
+    opacity 250ms ease,
+    visibility 250ms ease;
 }
 
 
@@ -246,35 +227,36 @@ a {
   top: 0;
   right: 0;
   left: 0;
-
   z-index: 100;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  height: 82px;
-  padding: 0 clamp(24px, 5vw, 82px);
+  height: 76px;
+  padding: 0 clamp(22px, 5vw, 78px);
 
   border-bottom: 1px solid transparent;
 
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.82);
 
   opacity: 0;
-  transform: translateY(-24px);
+
+  transform: translateY(-22px);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
   transition:
-    opacity 600ms ease 1800ms,
-    transform 600ms ease 1800ms,
-    border-color 240ms ease;
+    opacity 600ms ease,
+    transform 600ms ease,
+    border-color 200ms ease;
 }
 
 
-.site.is-active .site-header {
+body.poster-ready .site-header {
   opacity: 1;
+
   transform: translateY(0);
 }
 
@@ -287,8 +269,8 @@ a {
 .site-header__logo {
   display: block;
 
-  width: 140px;
-  height: 54px;
+  width: 112px;
+  height: 48px;
 
   overflow: hidden;
 }
@@ -307,7 +289,7 @@ a {
 .site-header__nav {
   display: flex;
   align-items: center;
-  gap: clamp(20px, 3vw, 48px);
+  gap: clamp(20px, 3vw, 44px);
 
   font-size: 13px;
 }
@@ -346,37 +328,63 @@ a {
 
 
 /* =========================================
-   5. 首屏
+   5. 首页大屏
    ========================================= */
 
 .hero {
   position: relative;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  min-height: 650px;
 
-  min-height: 100vh;
-  padding:
-    100px
-    clamp(20px, 6vw, 90px)
-    80px;
+  overflow: hidden;
 
   background: var(--white);
 }
 
 
-/*
-  图二和图三都是1900×1080画布，
-  所以可以完全重合。
-*/
+/* =========================================
+   6. Logo组合动画
+   ========================================= */
+
+.brand-reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--white);
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity 700ms ease,
+    visibility 700ms ease,
+    transform 850ms ease;
+}
+
+
+.hero.show-poster .brand-reveal {
+  opacity: 0;
+  visibility: hidden;
+
+  transform: scale(0.94);
+
+  pointer-events: none;
+}
+
+
 .logo-motion {
   position: relative;
 
-  width: min(1020px, 88vw);
+  width: min(1040px, 88vw);
   aspect-ratio: 1900 / 1080;
-
-  margin-top: min(4vh, 42px);
 
   pointer-events: none;
 }
@@ -398,53 +406,47 @@ a {
 }
 
 
-/* 图三初始状态 */
 .logo-motion__shape {
   z-index: 1;
 
   opacity: 0;
 
   transform:
-    translateY(60px)
-    scale(1.32)
-    rotate(-2deg);
+    translateY(68px)
+    scale(1.28)
+    rotate(-3deg);
 
   transform-origin: center;
 }
 
 
-/* 图二初始状态 */
 .logo-motion__text {
   z-index: 2;
 
   opacity: 0;
 
-  clip-path:
-    inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
 
-  transform:
-    translateX(-28px);
+  transform: translateX(-30px);
 }
 
 
-/* 点击后图三动效 */
 .site.is-active .logo-motion__shape {
   animation:
     shapeEnter
-    920ms
+    950ms
     cubic-bezier(0.16, 1, 0.3, 1)
-    260ms
+    220ms
     forwards;
 }
 
 
-/* 点击后图二文字揭开 */
 .site.is-active .logo-motion__text {
   animation:
-    textReveal
-    900ms
+    textEnter
+    850ms
     cubic-bezier(0.16, 1, 0.3, 1)
-    780ms
+    760ms
     forwards;
 }
 
@@ -454,9 +456,9 @@ a {
     opacity: 0;
 
     transform:
-      translateY(60px)
-      scale(1.32)
-      rotate(-2deg);
+      translateY(68px)
+      scale(1.28)
+      rotate(-3deg);
   }
 
   65% {
@@ -465,7 +467,7 @@ a {
     transform:
       translateY(-10px)
       scale(0.97)
-      rotate(0deg);
+      rotate(0);
   }
 
   100% {
@@ -474,168 +476,349 @@ a {
     transform:
       translateY(0)
       scale(1)
-      rotate(0deg);
+      rotate(0);
   }
 }
 
 
-@keyframes textReveal {
-  0% {
+@keyframes textEnter {
+  from {
     opacity: 0;
 
-    clip-path:
-      inset(0 100% 0 0);
+    clip-path: inset(0 100% 0 0);
 
-    transform:
-      translateX(-28px);
+    transform: translateX(-30px);
   }
 
-  100% {
+  to {
     opacity: 1;
 
-    clip-path:
-      inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
 
-    transform:
-      translateX(0);
+    transform: translateX(0);
   }
 }
 
 
 /* =========================================
-   6. 首屏文案
+   7. 品牌视频海报
    ========================================= */
 
-.hero-copy {
-  position: relative;
+.hero-poster {
+  position: absolute;
+  inset: 0;
   z-index: 3;
 
-  width: min(920px, 90vw);
-  margin-top: -40px;
+  overflow: hidden;
 
-  text-align: center;
+  background: #02060c;
 
   opacity: 0;
-  transform: translateY(28px);
+  visibility: hidden;
+
+  transform: scale(1.06);
+
+  transition:
+    opacity 900ms ease,
+    visibility 900ms ease,
+    transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 
-.site.is-active .hero-copy {
-  animation:
-    heroCopyEnter
-    720ms
-    ease
-    1550ms
-    forwards;
+.hero.show-poster .hero-poster {
+  opacity: 1;
+  visibility: visible;
+
+  transform: scale(1);
 }
 
 
-@keyframes heroCopyEnter {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hero-poster__image {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  user-select: none;
+  -webkit-user-drag: none;
+
+  transition: transform 8s ease;
 }
 
 
-.hero-copy__eyebrow {
-  margin: 0 0 22px;
+.hero.show-poster .hero-poster__image {
+  transform: scale(1.035);
+}
 
-  color: var(--brand-blue);
 
-  font-size: 11px;
+.hero-poster__shade {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 5, 12, 0.66),
+      rgba(0, 5, 12, 0.04) 48%,
+      rgba(0, 5, 12, 0.16)
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   8. 播放按钮
+   ========================================= */
+
+.play-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+
+  padding: 0;
+
+  border: 0;
+
+  color: var(--white);
+  background: transparent;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -44%)
+    scale(0.82);
+
+  cursor: pointer;
+
+  transition:
+    opacity 600ms ease 600ms,
+    transform 600ms ease 600ms;
+}
+
+
+.hero.show-poster .play-button {
+  opacity: 1;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1);
+}
+
+
+.play-button__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 94px;
+  height: 94px;
+
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 50%;
+
+  background: rgba(3, 25, 241, 0.18);
+
+  box-shadow:
+    0 12px 40px
+    rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+
+.play-button:hover .play-button__circle {
+  border-color: var(--brand-blue);
+  background: var(--brand-blue);
+
+  transform: scale(1.08);
+}
+
+
+.play-button__triangle {
+  width: 0;
+  height: 0;
+
+  margin-left: 7px;
+
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-left: 20px solid var(--white);
+}
+
+
+.play-button__label {
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.28em;
 }
 
 
-.hero-copy h1 {
-  margin: 0;
+/* =========================================
+   9. 海报信息
+   ========================================= */
 
-  font-size:
-    clamp(34px, 5.2vw, 76px);
+.hero-poster__caption {
+  position: absolute;
+  left: clamp(24px, 5vw, 80px);
+  bottom: clamp(26px, 6vh, 64px);
+  z-index: 4;
 
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -0.055em;
-}
+  color: var(--white);
 
+  opacity: 0;
 
-.hero-copy__description {
-  margin: 28px 0 0;
-
-  color: var(--gray);
-
-  font-size: clamp(14px, 1.5vw, 18px);
-  line-height: 1.9;
-}
-
-
-.hero-copy__actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-
-  margin-top: 36px;
-}
-
-
-.primary-button,
-.secondary-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-width: 148px;
-  height: 48px;
-  padding: 0 22px;
-
-  border-radius: 999px;
-
-  font-size: 13px;
+  transform: translateY(18px);
 
   transition:
-    color 180ms ease,
-    background 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease;
+    opacity 650ms ease 850ms,
+    transform 650ms ease 850ms;
 }
 
 
-.primary-button {
-  color: var(--white);
-  background: var(--brand-blue);
-  border: 1px solid var(--brand-blue);
+.hero.show-poster .hero-poster__caption {
+  opacity: 1;
+
+  transform: translateY(0);
 }
 
 
-.secondary-button {
-  color: var(--black);
-  background: var(--white);
-  border: 1px solid var(--line);
+.hero-poster__caption strong {
+  font-size: 20px;
+  letter-spacing: -0.04em;
 }
 
 
-.primary-button:hover,
-.secondary-button:hover {
-  transform: translateY(-2px);
-}
+.hero-poster__caption p {
+  margin: 8px 0 0;
 
+  color: rgba(255, 255, 255, 0.7);
 
-.secondary-button:hover {
-  color: var(--white);
-  background: var(--black);
-  border-color: var(--black);
+  font-size: 9px;
+  letter-spacing: 0.24em;
 }
 
 
 /* =========================================
-   7. 暂时占位板块
+   10. 品牌视频弹窗
    ========================================= */
 
-.placeholder-section {
-  min-height: 72vh;
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 28px;
+
+  background: rgba(0, 0, 0, 0.95);
+
+  opacity: 0;
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 280ms ease,
+    visibility 280ms ease;
+}
+
+
+.video-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+
+.video-modal__video {
+  display: block;
+
+  width: min(92vw, 1500px);
+  max-height: 88vh;
+
+  background: #000000;
+
+  box-shadow:
+    0 30px 100px
+    rgba(0, 0, 0, 0.55);
+
+  transform: scale(0.96);
+
+  transition:
+    transform 400ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.video-modal.is-open .video-modal__video {
+  transform: scale(1);
+}
+
+
+.video-modal__close {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  z-index: 3;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 50%;
+
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+
+.video-modal__close:hover {
+  background: var(--brand-blue);
+
+  transform: rotate(90deg);
+}
+
+
+/* =========================================
+   11. 后续板块占位
+   ========================================= */
+
+.page-section {
+  min-height: 70vh;
+
   padding:
     120px
     clamp(24px, 8vw, 130px);
@@ -646,46 +829,36 @@ a {
 }
 
 
-.placeholder-section span {
+.page-section__number {
   color: var(--brand-blue);
 
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
 }
 
 
-.placeholder-section h2 {
+.page-section h2 {
   margin: 22px 0 0;
 
-  font-size: clamp(42px, 7vw, 100px);
+  font-size: clamp(44px, 7vw, 96px);
   font-weight: 500;
   letter-spacing: -0.06em;
 }
 
 
-.placeholder-section p {
+.page-section p {
   color: var(--gray);
-
-  font-size: 15px;
 }
 
 
 /* =========================================
-   8. 手机端
+   12. 手机端
    ========================================= */
 
 @media (max-width: 760px) {
 
-  .intro.is-leaving {
-    top: 31vh;
-    right: 15vw;
-    bottom: 31vh;
-    left: 15vw;
-  }
-
-
-  .intro__name {
+  .intro__title {
     margin-bottom: 34px;
 
     font-size: 58px;
@@ -699,8 +872,8 @@ a {
 
 
   .site-header__logo {
-    width: 104px;
-    height: 42px;
+    width: 92px;
+    height: 40px;
   }
 
 
@@ -718,68 +891,66 @@ a {
 
 
   .hero {
-    justify-content: center;
-
     min-height: 100svh;
-    padding:
-      78px
-      14px
-      48px;
   }
 
 
   .logo-motion {
-    width: 106vw;
+    width: 112vw;
     max-width: none;
-
-    margin-top: -30px;
   }
 
 
-  .hero-copy {
-    width: 92vw;
-    margin-top: -22px;
+  .hero-poster__image {
+    object-position: 58% center;
   }
 
 
-  .hero-copy__eyebrow {
-    font-size: 9px;
-    letter-spacing: 0.19em;
+  .play-button__circle {
+    width: 76px;
+    height: 76px;
   }
 
 
-  .hero-copy h1 {
-    font-size: clamp(30px, 9vw, 44px);
-    line-height: 1.16;
+  .play-button__triangle {
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 16px;
   }
 
 
-  .hero-copy__description {
-    margin-top: 20px;
-
-    font-size: 13px;
-    line-height: 1.75;
+  .hero-poster__caption {
+    left: 18px;
+    bottom: 24px;
   }
 
 
-  .hero-copy__actions {
-    flex-direction: column;
-
-    width: 100%;
-    margin-top: 26px;
+  .video-modal {
+    padding: 0;
   }
 
 
-  .primary-button,
-  .secondary-button {
-    width: min(320px, 88vw);
+  .video-modal__video {
+    width: 100vw;
+    max-height: 100svh;
+  }
+
+
+  .video-modal__close {
+    top: 14px;
+    right: 14px;
+
+    width: 42px;
+    height: 42px;
+
+    background: rgba(0, 0, 0, 0.42);
   }
 
 }
 
 
 /* =========================================
-   9. 减少动画模式
+   13. 减少动画模式
    ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
