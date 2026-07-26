@@ -90,10 +90,80 @@
     <!-- ==================================
          首页大屏
          ================================== -->
-    <section
-      id="home"
-      class="hero"
+<section
+  id="home"
+  class="hero"
+>
+
+  <!-- Logo组合动画 -->
+  <div
+    id="brandReveal"
+    class="brand-reveal"
+  >
+    <div class="logo-motion">
+
+      <img
+        class="logo-motion__shape"
+        src="./images/logo-shape.png"
+        alt=""
+        draggable="false"
+      >
+
+      <img
+        class="logo-motion__text"
+        src="./images/logo-text.png"
+        alt="WE GROW"
+        draggable="false"
+      >
+
+    </div>
+  </div>
+
+
+  <!-- 品牌视频海报 -->
+  <div
+    id="heroPoster"
+    class="hero-poster"
+    aria-hidden="true"
+  >
+
+    <img
+      class="hero-poster__image"
+      src="./images/hero-poster.png"
+      alt="未构品牌宣传片"
+      draggable="false"
     >
+
+    <div class="hero-poster__shade"></div>
+
+
+    <button
+      id="playButton"
+      class="play-button"
+      type="button"
+      aria-label="播放公司品牌视频"
+    >
+      <span class="play-button__circle">
+        <span class="play-button__triangle"></span>
+      </span>
+
+      <span class="play-button__label">
+        PLAY BRAND FILM
+      </span>
+    </button>
+
+
+    <div class="hero-poster__caption">
+      <strong>WEGROW</strong>
+
+      <p>
+        AI MARKETING GROWTH SYSTEM
+      </p>
+    </div>
+
+  </div>
+
+</section>
 
       <!-- 第二阶段：Logo组合动画 -->
       <div
