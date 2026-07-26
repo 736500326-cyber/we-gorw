@@ -247,5 +247,370 @@
   <!-- 主入口最后加载 -->
   <script src="./js/main.js?v=1"></script>
 
+/* ==================================
+   新版Logo转品牌海报
+   ================================== */
+
+body.video-open {
+  overflow: hidden;
+}
+
+
+.hero {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  min-height: 650px;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+
+.brand-reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity 700ms ease,
+    visibility 700ms ease,
+    transform 850ms ease;
+}
+
+
+.hero.show-poster .brand-reveal {
+  opacity: 0;
+  visibility: hidden;
+
+  transform: scale(0.94);
+
+  pointer-events: none;
+}
+
+
+.logo-motion {
+  position: relative;
+
+  width: min(1040px, 88vw);
+  aspect-ratio: 1900 / 1080;
+
+  margin: 0;
+}
+
+
+.hero-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  overflow: hidden;
+
+  background: #02060c;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: scale(1.06);
+
+  transition:
+    opacity 900ms ease,
+    visibility 900ms ease,
+    transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.hero.show-poster .hero-poster {
+  opacity: 1;
+  visibility: visible;
+
+  transform: scale(1);
+}
+
+
+.hero-poster__image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  user-select: none;
+  -webkit-user-drag: none;
+
+  transition: transform 8s ease;
+}
+
+
+.hero.show-poster
+.hero-poster__image {
+  transform: scale(1.035);
+}
+
+
+.hero-poster__shade {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 5, 12, 0.65),
+      rgba(0, 5, 12, 0.04) 48%,
+      rgba(0, 5, 12, 0.16)
+    );
+
+  pointer-events: none;
+}
+
+
+.play-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+
+  padding: 0;
+
+  border: 0;
+
+  color: #ffffff;
+  background: transparent;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -44%)
+    scale(0.82);
+
+  cursor: pointer;
+
+  transition:
+    opacity 600ms ease 600ms,
+    transform 600ms ease 600ms;
+}
+
+
+.hero.show-poster .play-button {
+  opacity: 1;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1);
+}
+
+
+.play-button__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 94px;
+  height: 94px;
+
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 50%;
+
+  background: rgba(3, 25, 241, 0.18);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    background 200ms ease,
+    transform 200ms ease;
+}
+
+
+.play-button:hover
+.play-button__circle {
+  background: #0319f1;
+
+  transform: scale(1.08);
+}
+
+
+.play-button__triangle {
+  width: 0;
+  height: 0;
+
+  margin-left: 7px;
+
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-left: 20px solid #ffffff;
+}
+
+
+.play-button__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+}
+
+
+.hero-poster__caption {
+  position: absolute;
+  left: clamp(24px, 5vw, 80px);
+  bottom: clamp(26px, 6vh, 64px);
+  z-index: 4;
+
+  color: #ffffff;
+
+  opacity: 0;
+  transform: translateY(18px);
+
+  transition:
+    opacity 650ms ease 850ms,
+    transform 650ms ease 850ms;
+}
+
+
+.hero.show-poster
+.hero-poster__caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.hero-poster__caption strong {
+  font-size: 20px;
+}
+
+
+.hero-poster__caption p {
+  margin: 8px 0 0;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 9px;
+  letter-spacing: 0.24em;
+}
+
+
+/* ==================================
+   视频弹窗
+   ================================== */
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 28px;
+
+  background: rgba(0, 0, 0, 0.95);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 280ms ease,
+    visibility 280ms ease;
+}
+
+
+.video-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.video-modal__video {
+  display: block;
+
+  width: min(92vw, 1500px);
+  max-height: 88vh;
+
+  background: #000000;
+
+  box-shadow:
+    0 30px 100px
+    rgba(0, 0, 0, 0.55);
+}
+
+
+.video-modal__close {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  z-index: 3;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+
+  font-size: 28px;
+
+  cursor: pointer;
+}
+
+
+body.poster-ready
+.site-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: 100svh;
+  }
+
+  .logo-motion {
+    width: 112vw;
+  }
+
+  .hero-poster__image {
+    object-position: 58% center;
+  }
+
+  .play-button__circle {
+    width: 76px;
+    height: 76px;
+  }
+
+  .video-modal {
+    padding: 0;
+  }
+
+  .video-modal__video {
+    width: 100vw;
+    max-height: 100svh;
+  }
+}
+
 </body>
 </html>
