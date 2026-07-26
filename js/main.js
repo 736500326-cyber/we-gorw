@@ -3,105 +3,91 @@ document.addEventListener(
   function () {
     "use strict";
 
-    const body =
-      document.body;
 
-    const intro =
-      document.getElementById(
-        "intro"
-      );
-
-    const enterButton =
-      document.getElementById(
-        "enterButton"
-      );
-
-    const site =
-      document.getElementById(
-        "site"
-      );
+    /*
+      获取所有已经注册的功能模块。
+    */
+    const modules =
+      window.WeGrowModules || {};
 
 
     /*
-      检查三个元素是否存在。
+      模块启动顺序。
+      后期新增功能可以继续写在这里。
     */
-    if (
-      !intro ||
-      !enterButton ||
-      !site
-    ) {
-      alert(
-        "点击功能没有匹配成功，请检查 intro、enterButton、site 三个ID。"
-      );
-
-      return;
-    }
+    const moduleOrder = [
+      "intro",
+      "brandVideo"
+    ];
 
 
     /*
-      点击进入官网。
+      按顺序启动模块。
     */
-    function enterSite() {
+    moduleOrder.forEach(
+      function (moduleName) {
 
-      console.log(
-        "进入官网按钮已点击"
-      );
-
-
-      /*
-        显示白色网站主体。
-      */
-      site.classList.add(
-        "is-active"
-      );
+        const initFunction =
+          modules[moduleName];
 
 
-      site.setAttribute(
-        "aria-hidden",
-        "false"
-      );
+        if (
+          typeof initFunction ===
+          "function"
+        ) {
 
+          initFunction();
 
-      /*
-        蓝色开屏离场。
-      */
-      intro.classList.add(
-        "is-leaving"
-      );
+        } else {
 
+          console.warn(
+            "未找到模块：",
+            moduleName
+          );
+        }
 
-      /*
-        允许网页滚动。
-      */
-      body.classList.remove(
-        "page-locked"
-      );
-
-
-      /*
-        动画结束后隐藏蓝色开屏。
-      */
-      window.setTimeout(
-        function () {
-          intro.style.display =
-            "none";
-        },
-        1000
-      );
-    }
-
-
-    enterButton.addEventListener(
-      "click",
-      enterSite
+      }
     );
 
 
     /*
-      测试JavaScript是否成功加载。
+      顶部导航滚动状态。
     */
+    const siteHeader =
+      document.querySelector(
+        ".site-header"
+      );
+
+
+    function updateHeaderState() {
+
+      if (!siteHeader) {
+        return;
+      }
+
+
+      siteHeader.classList.toggle(
+        "is-scrolled",
+        window.scrollY > 20
+      );
+    }
+
+
+    window.addEventListener(
+      "scroll",
+      updateHeaderState,
+      {
+        passive: true
+      }
+    );
+
+
+    updateHeaderState();
+
+
     console.log(
-      "未构官网 main.js 已成功加载"
+      "未构官网全部模块已成功启动"
     );
+
   }
 );
