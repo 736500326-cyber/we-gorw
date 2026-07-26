@@ -1,260 +1,335 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
+/* =========================================
+   1. 全局设置
+   ========================================= */
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
-
-  <meta
-    name="description"
-    content="未构 WeGrow｜AI全案营销增长系统服务商"
-  >
-
-  <title>未构 WeGrow</title>
-
-  <link
-    rel="stylesheet"
-    href="./css/style.css?v=1"
-  >
-</head>
-
-<body class="page-locked">
-
-  <!-- ==================================
-       第一阶段：纯蓝开屏
-       ================================== -->
-  <section
-    id="intro"
-    class="intro"
-    aria-label="未构官网开屏"
-  >
-    <div class="intro__content">
-
-      <div class="intro__title">
-        WE GROW
-      </div>
-
-      <button
-        id="enterButton"
-        class="intro__button"
-        type="button"
-      >
-        <span>进入官网</span>
-        <span>→</span>
-      </button>
-
-      <p class="intro__tip">
-        CLICK TO ENTER
-      </p>
-
-    </div>
-  </section>
+:root {
+  --brand-blue: #0319f1;
+  --black: #050505;
+  --white: #ffffff;
+  --gray: #76767e;
+  --line: rgba(5, 5, 5, 0.12);
+}
 
 
-  <!-- ==================================
-       官网主体
-       ================================== -->
-  <main
-    id="site"
-    class="site"
-    aria-hidden="true"
-  >
-
-    <!-- 顶部导航 -->
-    <header class="site-header">
-
-      <a
-        class="site-header__logo"
-        href="#home"
-        aria-label="返回首页"
-      >
-        <img
-          src="./images/logo/logo-full.png"
-          alt="未构 WeGrow"
-        >
-      </a>
-
-      <nav class="site-header__nav">
-        <a href="#home">首页</a>
-        <a href="#services">服务能力</a>
-        <a href="#cases">项目案例</a>
-        <a href="#contact">联系我们</a>
-      </nav>
-
-    </header>
+* {
+  box-sizing: border-box;
+}
 
 
-    <!-- ==================================
-         首页大屏
-         ================================== -->
-    <section
-      id="home"
-      class="hero"
-    >
-
-      <!-- 第二阶段：Logo组合动画 -->
-      <div
-        id="brandReveal"
-        class="brand-reveal"
-      >
-        <div class="logo-motion">
-
-          <img
-            class="logo-motion__shape"
-            src="./images/logo/logo-shape.png"
-            alt=""
-            draggable="false"
-          >
-
-          <img
-            class="logo-motion__text"
-            src="./images/logo/logo-text.png"
-            alt="WE GROW"
-            draggable="false"
-          >
-
-        </div>
-      </div>
+html {
+  scroll-behavior: smooth;
+}
 
 
-      <!-- 第三阶段：品牌海报 -->
-      <div
-        id="heroPoster"
-        class="hero-poster"
-        aria-hidden="true"
-      >
-
-        <img
-          class="hero-poster__image"
-          src="./images/hero/hero-poster.png"
-          alt="未构公司品牌宣传片"
-          draggable="false"
-        >
-
-        <div class="hero-poster__shade"></div>
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
 
 
-        <!-- 播放按钮 -->
-        <button
-          id="playButton"
-          class="play-button"
-          type="button"
-          aria-label="播放公司品牌视频"
-        >
-          <span class="play-button__circle">
-            <span class="play-button__triangle"></span>
-          </span>
+body {
+  color: var(--black);
+  background: var(--white);
 
-          <span class="play-button__label">
-            PLAY BRAND FILM
-          </span>
-        </button>
+  font-family:
+    Arial,
+    "Helvetica Neue",
+    "Microsoft YaHei",
+    "PingFang SC",
+    sans-serif;
+}
 
 
-        <!-- 左下角品牌信息 -->
-        <div class="hero-poster__caption">
-          <strong>WEGROW</strong>
-
-          <p>
-            AI MARKETING GROWTH SYSTEM
-          </p>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- 后期继续增加 -->
-    <section
-      id="services"
-      class="page-section"
-    >
-      <span>01</span>
-      <h2>服务能力</h2>
-      <p>该板块后续继续搭建。</p>
-    </section>
-
-
-    <section
-      id="cases"
-      class="page-section"
-    >
-      <span>02</span>
-      <h2>项目案例</h2>
-      <p>该板块后续继续搭建。</p>
-    </section>
-
-
-    <section
-      id="contact"
-      class="page-section"
-    >
-      <span>03</span>
-      <h2>联系我们</h2>
-      <p>该板块后续继续搭建。</p>
-    </section>
-
-  </main>
-
-
-  <!-- ==================================
-       品牌视频弹窗
-       ================================== -->
-  <div
-    id="videoModal"
-    class="video-modal"
-    aria-hidden="true"
-  >
-
-    <button
-      id="closeVideoButton"
-      class="video-modal__close"
-      type="button"
-      aria-label="关闭视频"
-    >
-      ×
-    </button>
-
-    <video
-      id="brandVideo"
-      class="video-modal__video"
-      src="./videos/brand-video.mp4"
-      poster="./images/hero/hero-poster.png"
-      controls
-      playsinline
-      webkit-playsinline
-      preload="metadata"
-    >
-      当前浏览器不支持视频播放。
-    </video>
-
-  </div>
-
-
-  <noscript>
-    请开启浏览器 JavaScript 后访问未构官网。
-  </noscript>
-
-
-  <!-- 功能模块必须先加载 -->
-  <script src="./js/modules/intro.js?v=1"></script>
-  <script src="./js/modules/brand-video.js?v=1"></script>
-
-  <!-- 主入口最后加载 -->
-  <script src="./js/main.js?v=1"></script>
-
-/* ==================================
-   新版Logo转品牌海报
-   ================================== */
-
+body.page-locked,
 body.video-open {
   overflow: hidden;
 }
 
+
+button,
+a {
+  font: inherit;
+}
+
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================
+   2. 品牌蓝开屏
+   ========================================= */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  color: var(--white);
+  background: var(--brand-blue);
+
+  transition:
+    opacity 700ms ease,
+    transform 900ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+
+.intro.is-leaving {
+  opacity: 0;
+
+  transform: scale(0.88);
+
+  pointer-events: none;
+}
+
+
+.intro__content {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition:
+    opacity 300ms ease,
+    transform 500ms ease;
+}
+
+
+.intro.is-leaving .intro__content {
+  opacity: 0;
+
+  transform: scale(0.92);
+}
+
+
+.intro__title {
+  margin-bottom: 46px;
+
+  font-size: clamp(54px, 9vw, 136px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.07em;
+}
+
+
+.intro__button {
+  position: relative;
+  z-index: 20;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+
+  min-width: 190px;
+  height: 54px;
+  padding: 0 26px;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 999px;
+
+  color: var(--white);
+  background: transparent;
+
+  font-size: 14px;
+  letter-spacing: 0.16em;
+
+  cursor: pointer;
+
+  pointer-events: auto;
+
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+
+.intro__button:hover {
+  color: var(--brand-blue);
+  background: var(--white);
+
+  transform: translateY(-2px);
+}
+
+
+.intro__arrow {
+  font-size: 20px;
+
+  transition: transform 180ms ease;
+}
+
+
+.intro__button:hover .intro__arrow {
+  transform: translateX(5px);
+}
+
+
+.intro__tip {
+  margin: 14px 0 0;
+
+  color: rgba(255, 255, 255, 0.62);
+
+  font-size: 10px;
+  letter-spacing: 0.28em;
+}
+
+
+/* =========================================
+   3. 官网主体
+   ========================================= */
+
+.site {
+  position: relative;
+
+  min-height: 100vh;
+
+  background: var(--white);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 250ms ease,
+    visibility 250ms ease;
+}
+
+
+.site.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* =========================================
+   4. 顶部导航
+   ========================================= */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 76px;
+  padding: 0 clamp(22px, 5vw, 78px);
+
+  border-bottom: 1px solid transparent;
+
+  background: rgba(255, 255, 255, 0.82);
+
+  opacity: 0;
+
+  transform: translateY(-22px);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease,
+    border-color 200ms ease;
+}
+
+
+body.poster-ready .site-header {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+.site-header.is-scrolled {
+  border-color: var(--line);
+}
+
+
+.site-header__logo {
+  display: block;
+
+  width: 112px;
+  height: 48px;
+
+  overflow: hidden;
+}
+
+
+.site-header__logo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 44px);
+
+  font-size: 13px;
+}
+
+
+.site-header__nav a {
+  position: relative;
+
+  padding: 10px 0;
+}
+
+
+.site-header__nav a::after {
+  content: "";
+
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+
+  height: 2px;
+
+  background: var(--brand-blue);
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition: transform 220ms ease;
+}
+
+
+.site-header__nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+/* =========================================
+   5. 首页大屏
+   ========================================= */
 
 .hero {
   position: relative;
@@ -264,13 +339,15 @@ body.video-open {
   height: 100svh;
   min-height: 650px;
 
-  padding: 0;
-
   overflow: hidden;
 
-  background: #ffffff;
+  background: var(--white);
 }
 
+
+/* =========================================
+   6. Logo组合动画
+   ========================================= */
 
 .brand-reveal {
   position: absolute;
@@ -281,7 +358,7 @@ body.video-open {
   align-items: center;
   justify-content: center;
 
-  background: #ffffff;
+  background: var(--white);
 
   opacity: 1;
   visibility: visible;
@@ -309,9 +386,123 @@ body.video-open {
   width: min(1040px, 88vw);
   aspect-ratio: 1900 / 1080;
 
-  margin: 0;
+  pointer-events: none;
 }
 
+
+.logo-motion img {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+
+.logo-motion__shape {
+  z-index: 1;
+
+  opacity: 0;
+
+  transform:
+    translateY(68px)
+    scale(1.28)
+    rotate(-3deg);
+
+  transform-origin: center;
+}
+
+
+.logo-motion__text {
+  z-index: 2;
+
+  opacity: 0;
+
+  clip-path: inset(0 100% 0 0);
+
+  transform: translateX(-30px);
+}
+
+
+.site.is-active .logo-motion__shape {
+  animation:
+    shapeEnter
+    950ms
+    cubic-bezier(0.16, 1, 0.3, 1)
+    220ms
+    forwards;
+}
+
+
+.site.is-active .logo-motion__text {
+  animation:
+    textEnter
+    850ms
+    cubic-bezier(0.16, 1, 0.3, 1)
+    760ms
+    forwards;
+}
+
+
+@keyframes shapeEnter {
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(68px)
+      scale(1.28)
+      rotate(-3deg);
+  }
+
+  65% {
+    opacity: 1;
+
+    transform:
+      translateY(-10px)
+      scale(0.97)
+      rotate(0);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1)
+      rotate(0);
+  }
+}
+
+
+@keyframes textEnter {
+  from {
+    opacity: 0;
+
+    clip-path: inset(0 100% 0 0);
+
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+
+    clip-path: inset(0 0 0 0);
+
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================
+   7. 品牌视频海报
+   ========================================= */
 
 .hero-poster {
   position: absolute;
@@ -346,6 +537,8 @@ body.video-open {
   position: absolute;
   inset: 0;
 
+  display: block;
+
   width: 100%;
   height: 100%;
 
@@ -359,8 +552,7 @@ body.video-open {
 }
 
 
-.hero.show-poster
-.hero-poster__image {
+.hero.show-poster .hero-poster__image {
   transform: scale(1.035);
 }
 
@@ -372,7 +564,7 @@ body.video-open {
   background:
     linear-gradient(
       to top,
-      rgba(0, 5, 12, 0.65),
+      rgba(0, 5, 12, 0.66),
       rgba(0, 5, 12, 0.04) 48%,
       rgba(0, 5, 12, 0.16)
     );
@@ -380,6 +572,10 @@ body.video-open {
   pointer-events: none;
 }
 
+
+/* =========================================
+   8. 播放按钮
+   ========================================= */
 
 .play-button {
   position: absolute;
@@ -396,7 +592,7 @@ body.video-open {
 
   border: 0;
 
-  color: #ffffff;
+  color: var(--white);
   background: transparent;
 
   opacity: 0;
@@ -435,18 +631,23 @@ body.video-open {
 
   background: rgba(3, 25, 241, 0.18);
 
+  box-shadow:
+    0 12px 40px
+    rgba(0, 0, 0, 0.3);
+
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
   transition:
     background 200ms ease,
+    border-color 200ms ease,
     transform 200ms ease;
 }
 
 
-.play-button:hover
-.play-button__circle {
-  background: #0319f1;
+.play-button:hover .play-button__circle {
+  border-color: var(--brand-blue);
+  background: var(--brand-blue);
 
   transform: scale(1.08);
 }
@@ -460,7 +661,7 @@ body.video-open {
 
   border-top: 13px solid transparent;
   border-bottom: 13px solid transparent;
-  border-left: 20px solid #ffffff;
+  border-left: 20px solid var(--white);
 }
 
 
@@ -471,15 +672,20 @@ body.video-open {
 }
 
 
+/* =========================================
+   9. 海报信息
+   ========================================= */
+
 .hero-poster__caption {
   position: absolute;
   left: clamp(24px, 5vw, 80px);
   bottom: clamp(26px, 6vh, 64px);
   z-index: 4;
 
-  color: #ffffff;
+  color: var(--white);
 
   opacity: 0;
+
   transform: translateY(18px);
 
   transition:
@@ -488,15 +694,16 @@ body.video-open {
 }
 
 
-.hero.show-poster
-.hero-poster__caption {
+.hero.show-poster .hero-poster__caption {
   opacity: 1;
+
   transform: translateY(0);
 }
 
 
 .hero-poster__caption strong {
   font-size: 20px;
+  letter-spacing: -0.04em;
 }
 
 
@@ -510,9 +717,9 @@ body.video-open {
 }
 
 
-/* ==================================
-   视频弹窗
-   ================================== */
+/* =========================================
+   10. 品牌视频弹窗
+   ========================================= */
 
 .video-modal {
   position: fixed;
@@ -530,6 +737,8 @@ body.video-open {
   opacity: 0;
   visibility: hidden;
 
+  pointer-events: none;
+
   transition:
     opacity 280ms ease,
     visibility 280ms ease;
@@ -539,6 +748,8 @@ body.video-open {
 .video-modal.is-open {
   opacity: 1;
   visibility: visible;
+
+  pointer-events: auto;
 }
 
 
@@ -553,6 +764,17 @@ body.video-open {
   box-shadow:
     0 30px 100px
     rgba(0, 0, 0, 0.55);
+
+  transform: scale(0.96);
+
+  transition:
+    transform 400ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.video-modal.is-open .video-modal__video {
+  transform: scale(1);
 }
 
 
@@ -568,49 +790,176 @@ body.video-open {
   border: 1px solid rgba(255, 255, 255, 0.36);
   border-radius: 50%;
 
-  color: #ffffff;
+  color: var(--white);
   background: rgba(255, 255, 255, 0.08);
 
   font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
 
   cursor: pointer;
+
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
 }
 
 
-body.poster-ready
-.site-header {
-  opacity: 1;
-  transform: translateY(0);
+.video-modal__close:hover {
+  background: var(--brand-blue);
+
+  transform: rotate(90deg);
 }
 
+
+/* =========================================
+   11. 后续板块占位
+   ========================================= */
+
+.page-section {
+  min-height: 70vh;
+
+  padding:
+    120px
+    clamp(24px, 8vw, 130px);
+
+  border-top: 1px solid var(--line);
+
+  background: var(--white);
+}
+
+
+.page-section__number {
+  color: var(--brand-blue);
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+
+.page-section h2 {
+  margin: 22px 0 0;
+
+  font-size: clamp(44px, 7vw, 96px);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+
+
+.page-section p {
+  color: var(--gray);
+}
+
+
+/* =========================================
+   12. 手机端
+   ========================================= */
 
 @media (max-width: 760px) {
+
+  .intro__title {
+    margin-bottom: 34px;
+
+    font-size: 58px;
+  }
+
+
+  .site-header {
+    height: 64px;
+    padding: 0 16px;
+  }
+
+
+  .site-header__logo {
+    width: 92px;
+    height: 40px;
+  }
+
+
+  .site-header__nav {
+    gap: 14px;
+
+    font-size: 11px;
+  }
+
+
+  .site-header__nav a:nth-child(2),
+  .site-header__nav a:nth-child(3) {
+    display: none;
+  }
+
+
   .hero {
     min-height: 100svh;
   }
 
+
   .logo-motion {
     width: 112vw;
+    max-width: none;
   }
+
 
   .hero-poster__image {
     object-position: 58% center;
   }
+
 
   .play-button__circle {
     width: 76px;
     height: 76px;
   }
 
+
+  .play-button__triangle {
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 16px;
+  }
+
+
+  .hero-poster__caption {
+    left: 18px;
+    bottom: 24px;
+  }
+
+
   .video-modal {
     padding: 0;
   }
+
 
   .video-modal__video {
     width: 100vw;
     max-height: 100svh;
   }
+
+
+  .video-modal__close {
+    top: 14px;
+    right: 14px;
+
+    width: 42px;
+    height: 42px;
+
+    background: rgba(0, 0, 0, 0.42);
+  }
+
 }
 
-</body>
-</html>
+
+/* =========================================
+   13. 减少动画模式
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+}
